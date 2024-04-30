@@ -1,0 +1,15 @@
+[
+    {
+        "id":1,
+        "firstName":"John",
+        "lastName":"Smith",
+        "country":"US",
+        "pintCode":123456 
+    },
+    {
+        "id":2,
+        "firstName":"rayan",
+        "lastName":"Smith",
+        "country":"AUS"
+    }
+]
