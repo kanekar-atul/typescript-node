@@ -1,5 +1,6 @@
 import { CommonConstant, HTTP_RESPONSE, RESPONSE_CODE } from "./common/constant";
 import { KeyValueString } from "./common/model";
+import { logger } from "./common/powertool";
 import { isNullOrUndefined } from "./common/util";
 import { UserRepository } from "./repository/UserRepository";
 import { UserService } from "./service/UserService";
@@ -19,9 +20,18 @@ const handler = async (profileId:string):Promise<any>=>{
             })
         }
       }
+      logger.appendKeys({
+        profileId: profileId,
+    });
 
       const UserServiceParams = {
+        logger: logger.createChild({
+          serviceName: "InsightsService",
+        }),
         userRepository : new UserRepository({
+          logger: logger.createChild({
+            serviceName: "InsightsService",
+        }),
           persistenceConfig: userRepositoryParams()
         }),
         serviceConfig : serviceConfig(), 

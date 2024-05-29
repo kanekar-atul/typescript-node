@@ -1,4 +1,3 @@
-export const isNullOrUndefined =  (str: string | undefined | null) : boolean => !str;
 import { nanoid } from "nanoid";
 import { DateTime } from "luxon";
 import { HttpRequest } from "@smithy/protocol-http";

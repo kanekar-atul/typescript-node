@@ -1,24 +1,45 @@
 {
-  "name": "typescript-stack",
-  "version": "1.0.0",
+  "name": "insightsengine",
+  "version": "1.0.2",
   "description": "",
-  "main": "./lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "lint": "tslint -c tslint.json src/**/*.ts",
-    "prepublish": "npm run build"
+      "compile": "rm -rf dist && tsc && cp package.json ./dist/",
+      "build": "npm run compile",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "prettier": "npx prettier src/**/*.ts --write",
+      "run-test-case": "npm run build && node dist/test/insights-service-test",
+      "compile-insights": "rm -rf dist && tsc -p tsconfig-insights.json && cp package.json ./dist/",
+      "build-insights": "npm run compile-insights && cd dist && npm i --omit=dev && rm -rf dist/node_modules/.bin",
+      "compile-other": "rm -rf dist && tsc -p tsconfig-other.json && cp package.json ./dist/",
+      "build-other": "npm run compile-other && cd dist && npm i --omit=dev && rm -rf dist/node_modules/.bin"
   },
-  "keywords": [],
+  "repository": {
+      "type": "git",
+      "url": "git@gitlab.ets.org:lltalab/insightsengine.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "tslint": "^6.1.3",
-    "typescript": "^5.4.5"
+  "devDependencies": {
+      "@aws-lambda-powertools/logger": "^1.17.0",
+      "@aws-sdk/client-dynamodb": "^3.188.0",
+      "@aws-sdk/lib-dynamodb": "^3.417.0",
+      "@smithy/smithy-client": "^2.1.6",
+      "@types/aws-lambda": "^8.10.119",
+      "@types/luxon": "^3.3.3",
+      "@types/node": "^20.4.5",
+      "prettier": "3.1.1",
+      "typescript": "^5.1.6",
+      "@aws-sdk/client-sesv2": "^3.509.0",
+      "@aws-sdk/client-ssm": "^3.509.0"
   },
-  "files": [
-    "./bin/*",
-    "./lib/*"
-  ],
-  "typings": "./lib/index.d.ts"
+  "dependencies": {
+      "@aws-crypto/sha256-browser": "^5.2.0",
+      "@middy/core": "^4.6.4",
+      "@smithy/protocol-http": "^3.0.9",
+      "@smithy/signature-v4": "^2.0.15",
+      "jwt-decode": "^4.0.0",
+      "luxon": "^3.4.3",
+      "nanoid": "^3.3.6"
+  }
 }
